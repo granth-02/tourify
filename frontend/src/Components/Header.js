@@ -41,7 +41,7 @@ const Header = (props) => {
           <a href="/about">
             <span>About Us</span>
           </a>
-          <a href="/">
+          <a href="/india">
             <span>India</span>
           </a>
           <a href="/feedback">
