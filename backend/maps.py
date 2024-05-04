@@ -1,4 +1,5 @@
 from dotenv import load_dotenv
+from place_converter import place
 import os
 
 
@@ -9,6 +10,10 @@ class googleMapsHandler:
         self.apikey = os.getenv("mapsAPIKEY")
         self.data = data
         self.centralnode = 0  # latlong
+        self.places = []
+        self.time_stamp = data["time"]
+        for i in data["places"]:
+            self.places.append(place(i))
 
     def get_directions(self):
         """
@@ -32,4 +37,6 @@ class googleMapsHandler:
         """
         returns a dict that has all the information
         """
-        ...
+        return self.data
+
+
