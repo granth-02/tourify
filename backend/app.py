@@ -14,22 +14,23 @@ def index():
 
 @app.route("/submit")
 def optimus(data):  # TODO : change this
-    data = { 
-        "places" :[
-        "Gateway of India",
-        "Marine Drive",
-        "Chhatrapati Shivaji Maharaj Terminus (CST)",
-        "Siddhivinayak Temple",
-        "Haji Ali Dargah",
-        "Juhu Beach",
-        "Elephanta Caves",
-        "Bandra-Worli Sea Link",
-        "Film City",
-        "Colaba Causeway"
+    data = {
+        "places": [
+            "Gateway of India",
+            "Marine Drive",
+            "Chhatrapati Shivaji Maharaj Terminus (CST)",
+            "Siddhivinayak Temple",
+            "Haji Ali Dargah",
+            "Juhu Beach",
+            "Elephanta Caves",
+            "Bandra-Worli Sea Link",
+            "Film City",
+            "Colaba Causeway",
         ],
-        "time" : time.time()
+        "time": time.time(),
     }
     m = googleMapsHandler(data)
+    resp = m.aggregate() # send response back to the front end 
 
 
 if __name__ == "__main__":
