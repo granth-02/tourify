@@ -1,23 +1,23 @@
+import React, { useState } from "react";
 import styled from "styled-components";
+import axios from "axios";
 
 const Planner = (props) => {
-    return(
-        <>
-        <Grid>
-            <Container>
-                <h1>Plan Your Amazing Trip !</h1>
-            </Container>
-            <Map>
-                <img src="https://cdn.dribbble.com/users/1068771/screenshots/17747981/media/8bdba4ea3989451e380c4db0354bb474.jpg?resize=1000x750&vertical=center">
-
-                </img>
-            </Map>
-           
-        </Grid>
-        <Footer />
-        </>
-    )
-}
+  return (
+    <>
+      <Grid>
+        <Container>
+          <h1>Plan Your Amazing Trip !</h1>
+          <InputFields />
+        </Container>
+        <Map>
+          <img src="https://cdn.dribbble.com/users/1068771/screenshots/17747981/media/8bdba4ea3989451e380c4db0354bb474.jpg?resize=1000x750&vertical=center" alt="Map"></img>
+        </Map>
+      </Grid>
+      <Footer />
+    </>
+  );
+};
 
 const Grid = styled.div`
   display: grid;
@@ -38,13 +38,7 @@ const Map = styled.div`
   padding-top: 55px;
   margin-left: 0px;
   margin-right: 50px;
-  /* background-color: rgb(194, 51, 115); */
   background-color: rgb(61, 131, 97);
-  /* background-color: rgb(127, 233, 222); */
-  /* background-color: rgb(163, 210, 202); */
-  /* background-color: rgb(255, 169, 82); */
-  /* border: 1px solid;
-  border-color: #f6635c; */
   border-radius: 10px;
   img {
     position: relative;
@@ -52,50 +46,133 @@ const Map = styled.div`
     border-radius: 10px;
     margin-top: -15px;
   }
-  span {
-    display: flex;
-    text-align: center;
-    align-items: center;
-    justify-content: center;
-    position: relative;
-    margin-top: -50vw;
-    /* color: #ffccc4; */
-    color: #1C6758;
-    /* color: #FFEBAD; */
-    /* color: #E8DED2; */
-    /* color: #EF5A5A; */
-    font-size: 5vw;
-    letter-spacing: 20px;
-    font-family: "Lora", serif;
-    z-index: 1;
-  }
 `;
 
 const Container = styled.div`
   padding-top: 50px;
   width: 100%;
   border-radius: 10px;
-  height: 55vh;
-  /* background-color: rgb(246, 99, 92); */
+  height: auto;
   background-color: rgb(214, 205, 164);
-  /* background-color: rgb(255, 246, 191); */
-  /* background-color: rgb(94, 170, 168); */
-  /* background-color: rgb(255, 231, 154); */
-
-  h1{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  h1 {
     font-family: "Quicksand", sans-serif;
   }
 `;
 
+const InputFields = () => {
+  const [inputs, setInputs] = useState([{ key: 1, value: "" }]);
+  const [formData, setFormData] = useState([]);
+
+  const handleInputChange = (index, event) => {
+    const values = [...inputs];
+    values[index].value = event.target.value;
+    setInputs(values);
+  };
+
+  const handleAddInput = () => {
+    if (inputs.length < 5) {
+      const values = [...inputs];
+      values.push({ key: values.length + 1, value: "" });
+      setInputs(values);
+    }
+  };
+
+  const handleDeleteInput = (index) => {
+    const values = [...inputs];
+    values.splice(index, 1);
+    setInputs(values);
+  };
+
+  const handleSubmit = async () => {
+    const formData = inputs.map((input) => input.value).filter((value) => value.trim() !== "");
+    setFormData(formData);
+
+    const data = {
+      places: formData,
+      time: Date.now(),
+    };
+
+    try {
+      // Send data to Flask API
+      await axios.post("http://127.0.0.1:5000/submit", data);
+      console.log("Data sent successfully:", data);
+    } catch (error) {
+      console.error("Error sending data:", error);
+    }
+  };
+
+  return (
+    <>
+      {inputs.map((input, index) => (
+        <InputWrapper key={input.key}>
+          <StyledInput
+            type="text"
+            placeholder={`Input ${input.key}`}
+            value={input.value}
+            onChange={(event) => handleInputChange(index, event)}
+          />
+          {inputs.length > 1 && <DeleteButton onClick={() => handleDeleteInput(index)}>❌</DeleteButton>}
+        </InputWrapper>
+      ))}
+      {inputs.length < 5 && <AddButton onClick={handleAddInput}>+</AddButton>}
+      <SubmitButton onClick={handleSubmit}>Submit</SubmitButton>
+    </>
+  );
+};
+
+const InputWrapper = styled.div`
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+`;
+
+const StyledInput = styled.input`
+  margin-right: 5px;
+  padding: 8px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+`;
+
+const AddButton = styled.button`
+  margin-top: 10px;
+  padding: 8px 12px;
+  border-radius: 5px;
+  background-color: #1c6758;
+  color: white;
+  border: none;
+  cursor: pointer;
+  margin-bottom: 20px;
+`;
+
+const DeleteButton = styled.button`
+  padding: 4px 8px;
+  border-radius: 50%;
+  background-color: rgb(214, 205, 164);
+  color: white;
+  border: none;
+  cursor: pointer;
+`;
+
+const SubmitButton = styled.button`
+  margin-top: 10px;
+  padding: 8px 12px;
+  border-radius: 5px;
+  background-color: #1c6758;
+  color: white;
+  border: none;
+  cursor: pointer;
+`;
+
 const Footer = styled.footer`
-  /* background-color: #FFBA86;  */
-  background-color: #EEF2E6;
-  /* background-color: #FFEBAD; */
-  /* background-color: #056676; */
-  /* background-color: #EF5A5A; */
+  background-color: #eef2e6;
   color: white;
   padding: 20px;
-  border-radius: 20px 20px 0 0; /* Top-left and top-right curved edges */
+  border-radius: 20px 20px 0 0;
   text-align: center;
 `;
+
 export default Planner;
