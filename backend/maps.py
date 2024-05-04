@@ -37,7 +37,7 @@ class googleMapsHandler:
 
     def gen_payload(self):
         geocodes = self.geocode()
-        payload = {"origins":[]}
+        payload = []
         for i in geocodes:
             bp = {
                 "waypoint": {
@@ -53,9 +53,9 @@ class googleMapsHandler:
             lng = geocodes[i]["location"]["lng"]
             bp["waypoint"]["location"]["latLng"]["latitude"] = lat
             bp["waypoint"]["location"]["latLng"]["longitude"] = lng
-            payload["origins"].append(bp)
+            payload.append(bp)
         
-        return json.dumps(payload,indent=2)
+        return payload
 
     def get_places(self):
         """
