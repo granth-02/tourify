@@ -1,6 +1,7 @@
 from dotenv import load_dotenv
-from place_converter import place
 import os
+from googlemaps import Client, geocoding
+import json
 
 
 # TODO : LLM integration pending
@@ -10,10 +11,8 @@ class googleMapsHandler:
         self.apikey = os.getenv("mapsAPIKEY")
         self.data = data
         self.centralnode = 0  # latlong
-        self.places = []
-        self.time_stamp = data["time"]
-        for i in data["places"]:
-            self.places.append(place(i))
+        self.places = data["places"]
+        self.client = Client(key=self.apikey)
 
     def get_directions(self):
         """
@@ -38,5 +37,39 @@ class googleMapsHandler:
         returns a dict that has all the information
         """
         return self.data
+
+    def geocode(self):
+        """
+        returns the lat long for the given list of locations
+        """
+        loc_geocode_map = {}
+        for i in self.places:
+            gc = geocoding.geocode(self.client, address=i)
+            loc_geocode_map[i] = gc[0]["geometry"]
+
+        # return json.dumps(loc_geocode_map, indent=2)
+        return loc_geocode_map
+
+    def gen_payload(self):
+        geocodes = self.geocode()
+        payload = {"origins":[]}
+        for i in geocodes:
+            bp = {
+                "waypoint": {
+                    "location": {
+                        "latLng": {
+                            "latitude": 0, 
+                            "longitude": 0
+                        }
+                    }
+                }
+            }
+            lat = geocodes[i]["location"]["lat"]
+            lng = geocodes[i]["location"]["lng"]
+            bp["waypoint"]["location"]["latLng"]["latitude"] = lat
+            bp["waypoint"]["location"]["latLng"]["longitude"] = lng
+            payload["origins"].append(bp)
+        
+        return json.dumps(payload,indent=2)
 
 

@@ -22,9 +22,11 @@ CORS(app)
 #     "time": time.time(),
 # }
 
+
 @app.route("/data", methods=["GET"])
 def index():
     return "Hello, World!"
+
 
 @app.route("/submit", methods=["POST"])
 def optimus():  # TODO : change this
@@ -33,7 +35,9 @@ def optimus():  # TODO : change this
     print(f"places {data['places']}")
     print(f"time {data['time']}")
     m = googleMapsHandler(data)
-    resp = m.aggregate()  # send response back to the front end
+
+    # resp = m.aggregate()  # send response back to the front end
+    resp = m.geocode(data["places"])
     return resp
 
 
@@ -49,5 +53,5 @@ def optimus():  # TODO : change this
 #         print("Data received from React:", data)  # Print the received data for debugging
 #         return 'Data updated successfully', 200
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     app.run(debug=True)
