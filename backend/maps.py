@@ -19,33 +19,10 @@ class googleMapsHandler:
         takes the places mentioned in the data and returns the optimised route using directions api.
         """
         gmaps = googlemaps.Client(key = self.apikey)
-
-        # with open("places.json", 'r') as file:
-        #     places = json.load(file)['places']
-
         distance_matrix = gmaps.distance_matrix([place['places']['coordinates'] for place in self.data],
                                                 [place['location']['coordinate'] for place in self.data])
         distances = [[row['distance']['value'] for row in matrix['rows']] for matrix in distance_matrix['rows']]
-
         
-    def get_places(self):
-        """
-        finds hotels and restraunts around the central node
-        """
-        ...
-
-    def get_central_node(self):
-        """
-        finds the central node wrt all the locations passed
-        """
-        ...
-
-    def aggregate(self):
-        """
-        returns a dict that has all the information
-        """
-        return self.data
-
     def geocode(self):
         """
         returns the lat long for the given list of locations
@@ -80,4 +57,22 @@ class googleMapsHandler:
         
         return json.dumps(payload,indent=2)
 
+    def get_places(self):
+        """
+        finds hotels and restraunts around the central node
+        """
+        ...
+
+    def get_central_node(self):
+        """
+        finds the central node wrt all the locations passed
+        """
+        ...
+
+
+    def aggregate(self):
+        """
+        returns a dict that has all the information
+        """
+        return self.data
 
