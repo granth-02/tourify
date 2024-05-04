@@ -2,7 +2,7 @@ from dotenv import load_dotenv
 import os
 from googlemaps import Client, geocoding
 import json
-
+import googlemaps
 
 # TODO : LLM integration pending
 class googleMapsHandler:
@@ -18,8 +18,16 @@ class googleMapsHandler:
         """
         takes the places mentioned in the data and returns the optimised route using directions api.
         """
-        ...
+        gmaps = googlemaps.Client(key = self.apikey)
 
+        # with open("places.json", 'r') as file:
+        #     places = json.load(file)['places']
+
+        distance_matrix = gmaps.distance_matrix([place['places']['coordinates'] for place in self.data],
+                                                [place['location']['coordinate'] for place in self.data])
+        distances = [[row['distance']['value'] for row in matrix['rows']] for matrix in distance_matrix['rows']]
+
+        
     def get_places(self):
         """
         finds hotels and restraunts around the central node
