@@ -135,6 +135,7 @@ const ExpandedContent = styled.div`
   img{
     width: 250px;
     border-radius: 10px;
+
   }
 `;
 
