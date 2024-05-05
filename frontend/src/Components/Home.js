@@ -21,27 +21,36 @@ const Home = (props) => {
       </Himg>
       <Container>
         <CircleImagesContainer>
+
+        <a href="/about">
           <CircleImageHolder>
             <img
-              src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAOEAAADhCAMAAAAJbSJIAAAAYFBMVEX///8AAACgoKClpaXu7u5vb2/U1NScnJzm5ubp6ekLCwvDw8OkpKT19fUhISHi4uKsrKw2NjZycnIUFBROTk5GRkY8PDyzs7N5eXkRERFWVla+vr5KSkpgYGBbW1uPj49e7VtFAAAB8UlEQVR4nO3b626iQACA0WLtlepatd2Lu9v3f8sVRBAKLk1ImJmc86sDhfQLMzox9eYGAAAAAAAAAAAAAAAAAAAAAADgmvuHxXQe7ufO6bHIprSYO6fH7aSFt3Pn9DgWria61SrYwuVEt1oqnIfCL1A4E4VfkGbhZr9+O2elWLh8LXcy68fTKMHC92qzti5HCRZ+b++4Iyr88W3ctXd14b4YxlN4l/18GnXtW11YTtNoCssnM2rmNs/wVzGMpbD6sx9HXHuoCzfFMJLC83PZjUncV7/8Wo7iKGwm3vOItbj6fQo83SGKwibwaMzLTb79sz1UP8dQ2ArMnocm6sCbSQSF7cDBtZgPhIRf2A0ceNPIhz5TC76wJ7BvLR6abVpH6IW9gZ8nal6d6GkJvLA/MOtu4PL6xOeYsAuHAjtrMb84/tK9VdCFVwIvN3CH1vHuWgy58GpgsxbzzolOT7iFq+3VwHoD1w3sBgVbuPv7n8Ds9KZx6DnemqjBFo5x3MD1BbZfbqIuzNabgRMXTXEXDmuiUi1s1mKyhfVaTLfw3JVwYfUUUy4M/TPvKRRpaRcWbYkXHidq6oXZS7j/MTSVj13qhVnyz1DhTBQqVDg/hQoVzk9h/IXpf2cm/e89AQAAAAAAAAAAAAAAAAAAAAAAIfkHHT0UCPv9sXUAAAAASUVORK5CYII="
+              src="https://cdn.dribbble.com/userupload/13440218/file/original-d9fbcee810c6a9854d11416013461343.png?resize=1200x1250"
               alt="Mr No Emo"
             ></img>
-            <Description>Image</Description>
+            <Description>Path Pioneers</Description>
           </CircleImageHolder>
+          </a>
+
+        <a href="/planner">  
           <CircleImageHolder>
             <img
-              src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAOEAAADhCAMAAAAJbSJIAAAAYFBMVEX///8AAACgoKClpaXu7u5vb2/U1NScnJzm5ubp6ekLCwvDw8OkpKT19fUhISHi4uKsrKw2NjZycnIUFBROTk5GRkY8PDyzs7N5eXkRERFWVla+vr5KSkpgYGBbW1uPj49e7VtFAAAB8UlEQVR4nO3b626iQACA0WLtlepatd2Lu9v3f8sVRBAKLk1ImJmc86sDhfQLMzox9eYGAAAAAAAAAAAAAAAAAAAAAADgmvuHxXQe7ufO6bHIprSYO6fH7aSFt3Pn9DgWria61SrYwuVEt1oqnIfCL1A4E4VfkGbhZr9+O2elWLh8LXcy68fTKMHC92qzti5HCRZ+b++4Iyr88W3ctXd14b4YxlN4l/18GnXtW11YTtNoCssnM2rmNs/wVzGMpbD6sx9HXHuoCzfFMJLC83PZjUncV7/8Wo7iKGwm3vOItbj6fQo83SGKwibwaMzLTb79sz1UP8dQ2ArMnocm6sCbSQSF7cDBtZgPhIRf2A0ceNPIhz5TC76wJ7BvLR6abVpH6IW9gZ8nal6d6GkJvLA/MOtu4PL6xOeYsAuHAjtrMb84/tK9VdCFVwIvN3CH1vHuWgy58GpgsxbzzolOT7iFq+3VwHoD1w3sBgVbuPv7n8Ds9KZx6DnemqjBFo5x3MD1BbZfbqIuzNabgRMXTXEXDmuiUi1s1mKyhfVaTLfw3JVwYfUUUy4M/TPvKRRpaRcWbYkXHidq6oXZS7j/MTSVj13qhVnyz1DhTBQqVDg/hQoVzk9h/IXpf2cm/e89AQAAAAAAAAAAAAAAAAAAAAAAIfkHHT0UCPv9sXUAAAAASUVORK5CYII="
+              src="https://cdn.dribbble.com/userupload/7572117/file/original-2a0c68b4fbe2476972c05eef6cc7685e.png?resize=1024x710"
               alt="Circle Image 2"
             ></img>
-            <Description>Image</Description>
+            <Description>"Just Tourify :)"</Description>
           </CircleImageHolder>
+          </a>
+
+        <a href="/india">
           <CircleImageHolder>
             <img
-              src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAOEAAADhCAMAAAAJbSJIAAAAYFBMVEX///8AAACgoKClpaXu7u5vb2/U1NScnJzm5ubp6ekLCwvDw8OkpKT19fUhISHi4uKsrKw2NjZycnIUFBROTk5GRkY8PDyzs7N5eXkRERFWVla+vr5KSkpgYGBbW1uPj49e7VtFAAAB8UlEQVR4nO3b626iQACA0WLtlepatd2Lu9v3f8sVRBAKLk1ImJmc86sDhfQLMzox9eYGAAAAAAAAAAAAAAAAAAAAAADgmvuHxXQe7ufO6bHIprSYO6fH7aSFt3Pn9DgWria61SrYwuVEt1oqnIfCL1A4E4VfkGbhZr9+O2elWLh8LXcy68fTKMHC92qzti5HCRZ+b++4Iyr88W3ctXd14b4YxlN4l/18GnXtW11YTtNoCssnM2rmNs/wVzGMpbD6sx9HXHuoCzfFMJLC83PZjUncV7/8Wo7iKGwm3vOItbj6fQo83SGKwibwaMzLTb79sz1UP8dQ2ArMnocm6sCbSQSF7cDBtZgPhIRf2A0ceNPIhz5TC76wJ7BvLR6abVpH6IW9gZ8nal6d6GkJvLA/MOtu4PL6xOeYsAuHAjtrMb84/tK9VdCFVwIvN3CH1vHuWgy58GpgsxbzzolOT7iFq+3VwHoD1w3sBgVbuPv7n8Ds9KZx6DnemqjBFo5x3MD1BbZfbqIuzNabgRMXTXEXDmuiUi1s1mKyhfVaTLfw3JVwYfUUUy4M/TPvKRRpaRcWbYkXHidq6oXZS7j/MTSVj13qhVnyz1DhTBQqVDg/hQoVzk9h/IXpf2cm/e89AQAAAAAAAAAAAAAAAAAAAAAAIfkHHT0UCPv9sXUAAAAASUVORK5CYII="
+              src="https://cdn.dribbble.com/users/1985123/screenshots/18579103/media/c202c8aa3c557387761ba476e04b3f4e.jpg?resize=800x600&vertical=center"
               alt="Circle Image 3"
             ></img>
-            <Description>Image</Description>
+            <Description>"Local Treasures"</Description>
           </CircleImageHolder>
+          </a>
         </CircleImagesContainer>
       </Container>
       
@@ -121,7 +130,11 @@ const CircleImagesContainer = styled.div`
   justify-content: space-around;
   align-items: center;
   margin-top: 20px;
+  a{
+    text-decoration: none;
+  }
   
+  /* width: 100%; */
 `;
 
 const CircleImageHolder = styled.div`
@@ -129,7 +142,7 @@ const CircleImageHolder = styled.div`
   flex-direction: column;
   align-items: center;
 
-  
+  text-decoration: none;
 
   img {
     width: 250px;
@@ -147,8 +160,10 @@ const CircleImageHolder = styled.div`
 const Description = styled.p`
   margin-top: 10px;
   text-align: center;
-  font-size: 14px;
-  color: black;
+  font-size: 18px;
+  color: #1C6758;
+  font-weight: bold;
+  text-decoration: none;
 `;
 
 const Footer = styled.footer`

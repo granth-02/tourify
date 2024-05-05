@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import axios from "axios";
 
+
+
 const Planner = (props) => {
   return (
     <>
@@ -21,8 +23,7 @@ const Planner = (props) => {
               
               allowfullscreen
               referrerpolicy="no-referrer-when-downgrade"
-              src="https://www.google.com/maps/embed/v1/place?key={API_KEY}
-                &q=VIT+Bhopal">
+              src="https://www.google.com/maps/embed/v1/place?key=API=VIT+Bhopal&q=Bhopal">
           </iframe>
         </Map>
       </Grid>
