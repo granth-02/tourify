@@ -13,7 +13,8 @@ class Maps:
         self.apikey = os.getenv("mapsAPIKEY")
         self.data = data
         self.centralnode = 0  # latlong
-        self.places = ast.literal_eval(data["places"])
+        self.places =  data["places"]
+        # self.places = ast.literal_eval(data["places"])
         self.client = Client(key=self.apikey)
 
     def geocode(self, debug=False):

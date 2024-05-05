@@ -2,29 +2,23 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import axios from "axios";
 
-
-
 const Planner = (props) => {
+  const [mapUrl, setMapUrl] = useState('');
+
   return (
     <>
       <Grid>
         <Container>
           <h1>Plan Your Amazing Trip !</h1>
-          <InputFields />
+          <InputFields setMapUrl={setMapUrl} />
         </Container>
         <Map>
-          {/* <img src="https://cdn.dribbble.com/users/1068771/screenshots/17747981/media/8bdba4ea3989451e380c4db0354bb474.jpg?resize=1000x750&vertical=center" alt="Map"></img> */}
           <iframe
-            style={{width: "70vw", 
-                    height: "65vw", 
-                    borderRadius: '10px'
-                    }}
-              
-              
-              allowfullscreen
-              referrerpolicy="no-referrer-when-downgrade"
-              src="https://www.google.com/maps/embed/v1/place?key=API=VIT+Bhopal&q=Bhopal">
-          </iframe>
+            style={{width: "70vw", height: "65vw", borderRadius: '10px'}}
+            allowfullscreen
+            referrerpolicy="no-referrer-when-downgrade"
+            src={mapUrl}
+          />
         </Map>
       </Grid>
       <Footer />
@@ -32,7 +26,7 @@ const Planner = (props) => {
   );
 };
 
-const InputFields = () => {
+const InputFields = ({ setMapUrl }) => {
   const [inputs, setInputs] = useState([{ key: 1, value: "" }]);
   const [formData, setFormData] = useState([]);
 
@@ -59,15 +53,18 @@ const InputFields = () => {
   const handleSubmit = async () => {
     const formData = inputs.map((input) => input.value).filter((value) => value.trim() !== "");
     setFormData(formData);
-
+  
     const data = {
       places: formData,
       time: Date.now(),
     };
-
+  
     try {
       // Send data to Flask API
-      await axios.post("http://127.0.0.1:5000/submit", data);
+      const response = await axios.post("http://127.0.0.1:5000/submit", data);
+      const mapURL = response.data.map;
+      console.log("Map URL received:", mapURL);
+      setMapUrl(mapURL);
       console.log("Data sent successfully:", data);
     } catch (error) {
       console.error("Error sending data:", error);

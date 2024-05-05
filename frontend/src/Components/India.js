@@ -45,11 +45,11 @@ const India = (props) => {
   return (
     <>
       <Grid>
-        <Bg>
+        <Bg >
           <Card>
             {cardData.map((card, index) => (
               <React.Fragment key={index}>
-                <Wrap onClick={() => toggleExpand(index)}>
+                <Wrap onClick={() => toggleExpand(index)} blurBackground={expandedCardIndex !== null}>
                   <img src={card.imageUrl} alt={card.title} />
                   <h2>{card.title}</h2>
                   {isCardExpanded(index) && <p>{card.description}</p>}
@@ -101,6 +101,7 @@ const Bg = styled.div`
   margin-left: 0px;
   background-color: rgb(61, 131, 97);
   border-radius: 10px;
+  
 `;
 
 const Card = styled.div`
@@ -109,6 +110,7 @@ const Card = styled.div`
   grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
   margin-left: 20px;
   margin-right: 200px;
+  
 `;
 
 const Wrap = styled.div`
@@ -120,8 +122,8 @@ const Wrap = styled.div`
   background-color:  rgb(214, 205, 164);
   cursor: pointer;
   width: 20vw;
-  
-
+  filter: ${({ blurBackground }) => (blurBackground ? 'blur(4px)' : 'none')};
+  transition: filter 0.5s ease-in-out; /* Smooth transition */
   &:hover {
     transition: all 500ms cubic-bezier(0.25, 0.46, 0.45, 0.94);
     border: 5px solid #1c6758;
@@ -149,11 +151,16 @@ const Wrap = styled.div`
 const ExpandedContent = styled.div`
   display: ${({ expanded }) => (expanded ? 'flex' : 'none')};
   
+  transition: height 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94); /* Smooth transition for height */
+
+  /* Set height based on expansion state */
+  height: ${({ expanded }) => (expanded ? 'auto' : '0')};
+  overflow: hidden; /* Hide overflow when content is collapsed */
   align-items: center;
   padding-top: 0;
   margin-right: 300px;
   border-radius: 10px;
-  background-color: rgb(28, 103, 88, 0.7);
+  background-color: rgb(28, 103, 88, 0.6);
   cursor: pointer;
   width: 30vw;
   
