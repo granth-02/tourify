@@ -6,6 +6,7 @@ import requests
 import ast
 from urllib.parse import quote_plus
 
+
 class Maps:
     def __init__(self, data):
         load_dotenv()
@@ -60,7 +61,7 @@ class Maps:
         origin = quote_plus(self.places[0])
         dest = quote_plus(self.places[-1])
         waypoints = quote_plus("|".join(self.places[1:-1]))
-        url = f"https://www.google.com/maps/embed/v1/place?key={self.apikey}&origin={origin}&destination={dest}&waypoints={waypoints}"
+        url = f"https://www.google.com/maps/embed/v1/directions?key={self.apikey}&origin={origin}&destination={dest}&waypoints={waypoints}"
         return url
 
     def get_places(self):
