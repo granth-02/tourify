@@ -20,6 +20,14 @@ const Planner = (props) => {
             src={mapUrl}
           />
         </Map>
+        <Map>
+          <iframe
+            style={{width: "70vw", height: "65vw", borderRadius: '10px'}}
+            allowfullscreen
+            referrerpolicy="no-referrer-when-downgrade"
+            src="https://www.google.com/maps/embed/v1/search?key=AIzaSyDeDnLZxOzi5p1DuBZ71Xgo2CUn1hUJAhQ&q=hotels+in+Pokharan+Road+Number+1+Thane+West&center=19.2047633,72.967236775&zoom=14"
+          />
+        </Map>
       </Grid>
       <Footer />
     </>
@@ -28,7 +36,13 @@ const Planner = (props) => {
 
 const InputFields = ({ setMapUrl }) => {
   const [inputs, setInputs] = useState([{ key: 1, value: "" }]);
+  const [additionalInput, setAdditionalInput] = useState('');
   const [formData, setFormData] = useState([]);
+
+  const handleAdditionalInputChange = (event) => {
+    setAdditionalInput(event.target.value);
+  };
+  
 
   const handleInputChange = (index, event) => {
     const values = [...inputs];
@@ -53,12 +67,14 @@ const InputFields = ({ setMapUrl }) => {
   const handleSubmit = async () => {
     const formData = inputs.map((input) => input.value).filter((value) => value.trim() !== "");
     setFormData(formData);
+    const types = inputs.map((input) => input.type);
   
     const data = {
       places: formData,
       time: Date.now(),
+      type: additionalInput.trim() !== "" ? additionalInput : null,
     };
-  
+
     try {
       // Send data to Flask API
       const response = await axios.post("http://127.0.0.1:5000/submit", data);
@@ -85,6 +101,12 @@ const InputFields = ({ setMapUrl }) => {
         </InputWrapper>
       ))}
       {inputs.length < 10 && <AddButton onClick={handleAddInput}>+</AddButton>}
+      <TypeInput
+        type="text"
+        placeholder="Hotels or restaurants or cafe"
+        value={additionalInput}
+        onChange={handleAdditionalInputChange}
+      />
       <SubmitButton onClick={handleSubmit}>Submit</SubmitButton>
     </>
   );
@@ -100,6 +122,14 @@ const StyledInput = styled.input`
   margin-right: 5px;
   padding: 8px;
   border-radius: 5px;
+  border: 1px solid #ccc;
+`;
+
+const TypeInput = styled.input`
+  margin-right: 5px;
+  padding: 8px;
+  border-radius: 5px;
+  width: 13%;
   border: 1px solid #ccc;
 `;
 
@@ -144,7 +174,7 @@ const Grid = styled.div`
   padding-top: 100px;
   margin-left: 30px;
   margin-right: 30px;
-  margin-bottom: 100vw;
+  margin-bottom: 150vw;
 `;
 
 const Map = styled.div`
