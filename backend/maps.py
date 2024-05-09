@@ -13,7 +13,7 @@ class Maps:
         self.apikey = os.getenv("mapsAPIKEY")
         self.data = data
         self.centralnode = 0  # latlong
-        self.places =  data["places"]
+        self.places = data["places"]
         # self.places = ast.literal_eval(data["places"])
         self.client = Client(key=self.apikey)
 
@@ -65,14 +65,31 @@ class Maps:
         url = f"https://www.google.com/maps/embed/v1/directions?key={self.apikey}&origin={origin}&destination={dest}&waypoints={waypoints}"
         return url
 
-    def get_places(self):
-        """
-        finds hotels and restraunts around the central node
-        """
-        ...
-
     def get_central_node(self):
         """
         finds the central node wrt all the locations passed
         """
-        ...
+        loc_coordinate_map = self.geocode()
+        coordinates = [
+            loc_coordinate_map[c]["location"] for c in loc_coordinate_map.keys()
+        ]
+        # print(loc_coordinate_map, coordinates, sep="\n")
+        latlng = [0, 0]
+        for c in coordinates:
+            latlng[0] += c["lat"]
+            latlng[1] += c["lng"]
+        latlng[0] = latlng[0] / len(coordinates)
+        latlng[1] = latlng[1] / len(coordinates)
+        return latlng
+
+    def get_hotels(self):
+        """
+        Finds hotels around the central node
+        """
+        central = self.get_central_node()
+        rgc = geocoding.reverse_geocode(self.client, central)
+        central_addr = rgc[0]["address_components"]
+        street = quote_plus(central_addr[1]["long_name"])
+        area = quote_plus(central_addr[3]["long_name"])
+        url = f"https://www.google.com/maps/embed/v1/search?key={self.apikey}&q=Hotels+in+{street}+{area}&center={central[0]},{central[1]}&zoom=14"
+        return url

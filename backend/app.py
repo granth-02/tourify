@@ -13,7 +13,7 @@ def optimus():
     print(f"places {data['places']}")
     print(f"time {data['time']}")
     m = Maps(data)
-    resp = {"map": m.get_map()}
+    resp = {"map": m.get_map(), "hotels": m.get_hotels()}
     return resp
 
 
