@@ -4,14 +4,14 @@ import axios from "axios";
 
 const Planner = (props) => {
   const [mapUrl, setMapUrl] = useState('');
-  const [spots, setSpots] = useState('')
+  const [spotsURL, setSpotsUrl] = useState('')
 
   return (
     <>
       <Grid>
         <Container>
           <h1>Plan Your Amazing Trip !</h1>
-          <InputFields setMapUrl={setMapUrl} />
+          <InputFields setMapUrl={setMapUrl} setSpotsUrl={setSpotsUrl}/>
         </Container>
         <Map>
           <iframe
@@ -26,7 +26,7 @@ const Planner = (props) => {
             style={{width: "70vw", height: "65vw", borderRadius: '10px'}}
             allowfullscreen
             referrerpolicy="no-referrer-when-downgrade"
-            src={spots}
+            src={spotsURL}
           />
         </Map>
       </Grid>
@@ -35,7 +35,7 @@ const Planner = (props) => {
   );
 };
 
-const InputFields = ({ setMapUrl }) => {
+const InputFields = ({ setMapUrl, setSpotsUrl }) => {
   const [inputs, setInputs] = useState([{ key: 1, value: "" }]);
   const [additionalInput, setAdditionalInput] = useState('');
   const [formData, setFormData] = useState([]);
@@ -80,9 +80,11 @@ const InputFields = ({ setMapUrl }) => {
       // Send data to Flask API
       const response = await axios.post("http://127.0.0.1:5000/submit", data);
       const mapURL = response.data.map;
-      const spots = response.data.spots
+      const spotsURL = response.data.spots;
       console.log("Map URL received:", mapURL);
+      console.log("Map URL Got:", spotsURL);
       setMapUrl(mapURL);
+      setSpotsUrl(spotsURL);
       console.log("Data sent successfully:", data);
     } catch (error) {
       console.error("Error sending data:", error);
