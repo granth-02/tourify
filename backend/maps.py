@@ -14,6 +14,7 @@ class Maps:
         self.data = data
         self.centralnode = 0  # latlong
         self.places = data["places"]
+        self.loc = data["type"]
         # self.places = ast.literal_eval(data["places"])
         self.client = Client(key=self.apikey)
 
@@ -91,5 +92,5 @@ class Maps:
         central_addr = rgc[0]["address_components"]
         street = quote_plus(central_addr[1]["long_name"])
         area = quote_plus(central_addr[3]["long_name"])
-        url = f"https://www.google.com/maps/embed/v1/search?key={self.apikey}&q=Hotels+in+{street}+{area}&center={central[0]},{central[1]}&zoom=14"
+        url = f"https://www.google.com/maps/embed/v1/search?key={self.apikey}&q={self.loc}+in+{street}+{area}&center={central[0]},{central[1]}&zoom=14"
         return url
