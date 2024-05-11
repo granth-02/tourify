@@ -24,7 +24,7 @@ const About = (props) => {
                 <h1>What is Tourify?</h1>
                 <p>Your ultimate travel companion for crafting unforgettable adventures! Here at Tourify, we're on a mission to revolutionize the way you plan your trips. Gone are the days of endless scrolling through countless hotel options and mapping out your itinerary. With Tourify, you simply jot down all the hotspots you're itching to explore in your dream destination, and voilà! We'll do the rest, handpicking the perfect hotels strategically located near your must-see attractions. Say goodbye to wasted travel time and hello to more moments making memories. Let's turn your wanderlust into wonderlust with Tourify!</p> 
             </Container>
-            <Container>
+            <ContainerIMG>
                 <h1>Meet The Team !</h1>
                 <CircleGridContainer>
                     <CircleImageHolder>
@@ -79,8 +79,8 @@ const About = (props) => {
                         </Description>
                     </CircleImageHolder>
                 </CircleGridContainer>
-            </Container>
-            <Container>
+            </ContainerIMG>
+            <ContainerIMG>
                 <h1>Meet The Team !</h1>
                 <CircleGridContainer>
                     <CircleImageHolder>
@@ -134,7 +134,7 @@ const About = (props) => {
                         </Description>
                     </CircleImageHolder>
                 </CircleGridContainer>
-            </Container>
+            </ContainerIMG>
             
         </Grid>
         
@@ -197,6 +197,28 @@ const Aboutimg = styled.div`
     } 
 `   
 const Container = styled.div`
+  padding-top: 0px;
+  width: 100%;
+  border-radius: 10px;
+  height: 58vh;
+  /* background-color: rgb(246, 99, 92); */
+  background-color: rgb(214, 205, 164);
+  /* background-color: rgb(255, 246, 191); */
+  /* background-color: rgb(94, 170, 168); */
+  /* background-color: rgb(255, 231, 154); */
+  margin-bottom: auto;
+  h1{
+    font-family: "Quicksand", sans-serif;
+  }
+  p{
+    padding: 30px 50px;
+    font-family: "Quicksand", sans-serif;
+    font-size: 25px;
+    text-align: justify;
+  }
+`;
+
+const ContainerIMG = styled.div`
   padding-top: 0px;
   width: 100%;
   border-radius: 10px;
