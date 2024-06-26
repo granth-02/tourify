@@ -1,6 +1,6 @@
 # Tourify
 ## Introduction 
-Your ultimate travel companion for crafting unforgettable adventures! Here at Tourify, we're on a mission to revolutionize the way you plan your trips. Gone are the days of endless scrolling through countless hotel options and mapping out your itinerary. With Tourify, you simply jot down all the hotspots you're itching to explore in your dream destination, and voilà! We'll do the rest, handpicking the perfect hotels strategically located near your must-see attractions. Say goodbye to wasted travel time and hello to more moments making memories. Let's turn your wanderlust into wanderlust with Tourify!
+Your ultimate travel companion for crafting unforgettable adventures! Here at Tourify, we're on a mission to revolutionize the way you plan your trips. Gone are the days of endless scrolling through countless hotel options and mapping out your itinerary. With Tourify, you simply jot down all the hotspots you're itching to explore in your dream destination, and voilà! We'll do the rest, handpicking the perfect hotels strategically located near your must-see attractions. Say goodbye to wasted travel time and hello to more moments making memories. Let's turn your wonderlust into wanderlust with Tourify!
 
 ## Features
 - Allow users to enter visiting places in a city
